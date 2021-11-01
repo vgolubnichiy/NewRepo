@@ -44,74 +44,28 @@ namespace adressbook_web_tests
         public void TheUntitledTestCaseTest()
         {
             driver.Navigate().GoToUrl(baseURL);
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.CssSelector("form[id='LoginForm'] input[name='user']")).Click();
+            driver.FindElement(By.CssSelector("form[id='LoginForm'] input[name='user']")).Clear();
+            driver.FindElement(By.CssSelector("form[id='LoginForm'] input[name='user']")).SendKeys("admin");
+            driver.FindElement(By.CssSelector("form[name='LoginForm'] input[name='pass']")).Click();
+            driver.FindElement(By.CssSelector("form[id='LoginForm'] input[name='pass']")).Clear();
+            driver.FindElement(By.CssSelector("form[id='LoginForm'] input[name='pass']")).SendKeys("secret");
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-            driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.Name("new")).Click();
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("r");
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("r");
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("r");
-            driver.FindElement(By.Name("submit")).Click();
-            driver.FindElement(By.LinkText("group page")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
+            driver.FindElement(By.CssSelector("div[id='nav'] li[class='admin']")).Click();
+            driver.FindElement(By.CssSelector("div[id='content'] input[name='new']")).Click();            
+            driver.FindElement(By.CssSelector("input[name='group_name']")).Click();
+            driver.FindElement(By.CssSelector("input[name='group_name']")).Clear();
+            driver.FindElement(By.CssSelector("input[name='group_name']")).SendKeys("r");
+            driver.FindElement(By.CssSelector("textarea[name='group_header']")).Click();
+            driver.FindElement(By.CssSelector("textarea[name='group_header']")).Clear();
+            driver.FindElement(By.CssSelector("textarea[name='group_header']")).SendKeys("r");
+            driver.FindElement(By.CssSelector("textarea[name='group_footer']")).Click();
+            driver.FindElement(By.CssSelector("textarea[name='group_footer']")).Clear();
+            driver.FindElement(By.CssSelector("textarea[name='group_footer']")).SendKeys("r");
+            driver.FindElement(By.CssSelector("input[name='submit']")).Click();
+            driver.FindElement(By.CssSelector("a[href='group.php']")).Click();
+            driver.FindElement(By.CssSelector("div[id='top'] a[href='#']")).Click();
         }
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+       
     }
 }
