@@ -64,7 +64,7 @@ namespace adressbook_web_tests
             driver.FindElement(By.CssSelector("textarea[name='group_footer']")).SendKeys("r");
             driver.FindElement(By.CssSelector("input[name='submit']")).Click();
             driver.FindElement(By.CssSelector("a[href='group.php']")).Click();
-            driver.FindElement(By.CssSelector("div[id='top'] a[href='#']")).Click();
+            driver.FindElement(By.CssSelector("div[id='top'] form[name='logout'] a")).Click();
         }
        
     }
